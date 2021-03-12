@@ -10,11 +10,20 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      // 是否需要使用代理的标识，需要使用代理的接口请求函数的地方加上api
+      '/api': {  // 匹配所有以'/api'开头的请求路径
+        target: 'http://localhost:4000', // 代理目标的基础路径
+        changeOrigin: true,  // 支持跨域
+        pathRewrite: {// 重写路径：去掉路径中开头的‘/api'
+          '^/api': ''
+        }
+      }
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
-    port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+    port: 8081, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: true,
     errorOverlay: true,
     notifyOnErrors: true,

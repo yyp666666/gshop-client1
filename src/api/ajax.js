@@ -30,9 +30,9 @@ export default function ajax (url, data={}, type='GET') {
         url = url + '?' + dataStr
       }
       // axios发送 get 请求,promise得到的就是response：获取响应的数据  promise=response
-      promise = axios.get(url)
+      promise = axios.get(url)   // axios默认的promise得到的是response，而我们想直接得到promise对应response里面的data
     } else {
-      // 发送 post 请求..
+      // 发送 post 请求
       promise = axios.post(url, data)
   }
 
