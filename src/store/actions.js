@@ -14,7 +14,8 @@ import {
   RECEIVE_GOODS,
   INCREMENT_FOOD_COUNT,
   DECREMENT_FOOD_COUNT,
-  CLEAR_CART
+  CLEAR_CART,
+  RECEIVE_SEARCH_SHOPS
 } from './mutation-types'
 // 引入3个API接口
 import {
@@ -25,7 +26,8 @@ import {
   reqLogout,
   reqShopGoods,
   reqShopInfo,
-  reqShopRatings
+  reqShopRatings,
+  reqSearchShop
 } from '../api'
 export default {
 
@@ -77,6 +79,23 @@ export default {
     if (result.code === 0) {
       const shops = result.data
       commit(RECEIVE_SHOPS, {shops})
+    }
+  },
+
+  // 异步获取搜索到的商家列表
+  async searchShops ({commit, state}, keyword) {
+    // 发送异步ajax请求
+    const geohash = state.latitude + ',' + state.longitude
+    // 调用reqSearchShop接口时，它需要参数，所以此时将经纬度传递给接口，此时的经纬度在state中
+
+    // 而keyword确是最初是在组件里面获取的，所以需要从组件中传递过来
+    const result = await reqSearchShop(geohash, keyword)   // 现在已经可以发送请求了
+    // 发送请求之后，得到返回的数据，即获取promise对象，可以使用promise.then来接收，也可以使用async.await
+
+    // 得到一个结果，结果的形态可以查看API接口文档，根据结果提交一个mutation
+    if (result.code === 0) {
+      const searchShops = result.data
+      commit(RECEIVE_SEARCH_SHOPS, {searchShops})
     }
   },
 

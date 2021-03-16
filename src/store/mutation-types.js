@@ -20,3 +20,5 @@ export const DECREMENT_FOOD_COUNT = 'decrement_food_count' // 减少food中的co
 // 清空购物车
 export const CLEAR_CART = 'clear_cart' // 清空购物车
 
+// 用于接收从后台返回的搜索商家列表
+export const RECEIVE_SEARCH_SHOPS = 'receive_search_shops' // 接收地址

@@ -1,5 +1,6 @@
 /*
 状态对象
+是数组还是对象是根据data判断：里面存放的就是data里面存放的
  */
 // 分析哪些状态需要管理
 export default {
@@ -17,6 +18,7 @@ export default {
   categorys: [], // 食品分类数组
   shops: [], // 商家数组
 
+  searchShops: [], // 搜索得到的商家列表
   // 登录成功之后从后台返回的用户信息
   userInfo: {}, // 用户信息，获取用户信息之后mutation-types接收
 

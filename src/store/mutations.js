@@ -13,7 +13,8 @@ import {
   RECEIVE_INFO,
   INCREMENT_FOOD_COUNT,
   DECREMENT_FOOD_COUNT,
-  CLEAR_CART
+  CLEAR_CART,
+  RECEIVE_SEARCH_SHOPS
 } from './mutation-types'
 export default {
   [RECEIVE_ADDRESS] (state, {address}) {
@@ -101,6 +102,11 @@ export default {
     // 数组，跟food对象没有任何关系，所以需要首先将food处理一下
     // 这样写之后虽然列表被清空了，但是food（里面的count）还存在，food对象被好多个数组引用
     // 即food被foods引用，被cartFoods引用
-  }
+  },
+
+  // 搜索得到的商家列表
+  [RECEIVE_SEARCH_SHOPS] (state, {searchShops}) {
+    state.searchShops = searchShops   // 对searchShops进行更新
+  },
 
   }

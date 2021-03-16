@@ -3,10 +3,16 @@
  */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import MSite from '../pages/MSite/MSite'
+
+/*import MSite from '../pages/MSite/MSite'
 import Order from '../pages/Order/Order'
 import Profile from '../pages/Profile/Profile'
-import Search from '../pages/Search/Search'
+import Search from '../pages/Search/Search'*/
+// 路由组件懒加载：js代码分割：在每一个路由组件被创建的时候才会去加载该组件的js
+const MSite = () => import('../pages/MSite/MSite.vue')
+const Search = () => import('../pages/Search/Search.vue')
+const Order = () => import('../pages/Order/Order.vue')
+const Profile = () => import('../pages/Profile/Profile.vue')
 import Login from '../pages/Login/Login'
 import Shop from '../pages/Shop/Shop'
 import ShopGoods from '../pages/Shop/ShopGoods/ShopGoods'
@@ -22,7 +28,7 @@ export default new VueRouter({
   routes: [
     {
       path: '/msite', // 路径到时候自动跳转到该路由就可以了
-      component: MSite,
+      component: MSite,  // 返回路由组件的函数，只有执行此函数的时候，才会加载路由组件，这个函数在请求对应的路由路径的时候才会执行
       meta: {
         showFooter: true   // 需要显示将值设置为true
       }
